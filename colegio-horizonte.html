@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colegio Inclusivo Horizonte para Todos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FDFBF6;
+    --sky:#7FB8D9;
+    --sky-deep:#3F86AD;
+    --sun:#F4C95D;
+    --pink:#F4A6C1;
+    --pink-deep:#E8789F;
+    --ink:#2C4A5E;
+    --ink-soft:#5A7385;
+    --radius:22px;
+    --shadow: 0 12px 30px -12px rgba(44,74,94,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Nunito', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3,.brand{font-family:'Quicksand', sans-serif; font-weight:700;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  /* Skip link for accessibility */
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--ink); color:#fff;
+    padding:10px 18px; border-radius:0 0 10px 0; z-index:200;
+  }
+  .skip-link:focus{left:0;}
+
+  a:focus-visible, button:focus-visible, .card:focus-visible{
+    outline:3px solid var(--ink); outline-offset:3px;
+  }
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(253,251,246,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(44,74,94,0.08);
+  }
+  nav{
+    max-width:1180px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .brand-group{display:flex; align-items:center; gap:12px;}
+  .brand-group svg{width:46px; height:46px; flex-shrink:0;}
+  .brand{font-size:1.15rem; color:var(--ink); line-height:1.1;}
+  .brand small{display:block; font-family:'Nunito'; font-weight:600; font-size:0.7rem; color:var(--sky-deep); letter-spacing:0.04em;}
+  .nav-links{display:flex; gap:4px; flex-wrap:wrap; list-style:none;}
+  .nav-links a{
+    padding:9px 14px; border-radius:999px; font-weight:700; font-size:0.92rem;
+    text-decoration:none; color:var(--ink-soft); transition:background .2s, color .2s;
+  }
+  .nav-links a:hover{background:var(--sky); color:#fff;}
+
+  section{padding:84px 24px; max-width:1180px; margin:0 auto;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Quicksand'; font-weight:700; font-size:0.8rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--pink-deep); margin-bottom:14px;
+  }
+  .eyebrow::before{content:""; width:22px; height:3px; background:var(--sun); border-radius:3px;}
+
+  /* HERO */
+  #inicio{
+    padding-top:64px; padding-bottom:60px;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;
+  }
+  .hero-text h1{font-size:clamp(2.1rem, 4vw, 3.1rem); color:var(--ink); line-height:1.15; margin-bottom:18px;}
+  .hero-text .slogan{
+    font-family:'Quicksand'; font-weight:600; font-size:1.25rem; color:var(--sky-deep);
+    margin-bottom:22px;
+  }
+  .hero-text p{color:var(--ink-soft); font-size:1.05rem; max-width:46ch; margin-bottom:30px;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:999px;
+    font-family:'Quicksand'; font-weight:700; font-size:0.98rem; text-decoration:none;
+    border:none; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--sky-deep); color:#fff; box-shadow:var(--shadow);}
+  .btn-secondary{background:#fff; color:var(--ink); border:2px solid var(--sky);}
+
+  .hero-art{position:relative; display:flex; align-items:center; justify-content:center;}
+  .hero-art svg{width:100%; max-width:430px;}
+
+  .access-bar{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;
+  }
+  .access-pill{
+    display:flex; align-items:center; gap:7px; background:#fff; border:1px solid rgba(44,74,94,0.1);
+    padding:7px 13px; border-radius:999px; font-size:0.82rem; font-weight:700; color:var(--ink-soft);
+    box-shadow:0 4px 10px -6px rgba(44,74,94,0.2);
+  }
+  .access-pill svg{width:16px; height:16px; color:var(--sky-deep);}
+
+  /* MISION / VISION */
+  .mv-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .mv-card{
+    background:#fff; border-radius:var(--radius); padding:34px; box-shadow:var(--shadow);
+    border-top:6px solid var(--sky);
+  }
+  .mv-card.vision{border-top-color:var(--pink);}
+  .mv-card h2{font-size:1.5rem; margin-bottom:14px; display:flex; align-items:center; gap:10px;}
+  .mv-card h2 svg{width:30px; height:30px; color:var(--sky-deep);}
+  .mv-card.vision h2 svg{color:var(--pink-deep);}
+  .mv-card p{color:var(--ink-soft); font-size:1.02rem;}
+
+  /* MATERIAS */
+  #materias{background:linear-gradient(180deg, rgba(127,184,217,0.08), transparent); border-radius:40px;}
+  .subjects-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:18px; margin-top:36px;}
+  .subject-card{
+    background:#fff; border-radius:18px; padding:24px 20px; text-align:center;
+    box-shadow:var(--shadow); transition:transform .2s ease;
+  }
+  .subject-card:hover{transform:translateY(-5px);}
+  .subject-card .icon-wrap{
+    width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    margin:0 auto 14px; background:var(--sun);
+  }
+  .subject-card:nth-child(2) .icon-wrap{background:var(--pink);}
+  .subject-card:nth-child(3) .icon-wrap{background:var(--sky);}
+  .subject-card:nth-child(4) .icon-wrap{background:var(--sun);}
+  .subject-card:nth-child(5) .icon-wrap{background:var(--pink);}
+  .subject-card:nth-child(6) .icon-wrap{background:var(--sky);}
+  .subject-card:nth-child(7) .icon-wrap{background:var(--sun);}
+  .subject-card .icon-wrap svg{width:28px; height:28px; color:#fff;}
+  .subject-card h3{font-size:1.02rem; color:var(--ink);}
+
+  /* UNIDAD BIOLOGIA */
+  #unidad{
+    background:var(--ink); color:#fff; border-radius:40px; margin:84px 24px; padding:64px;
+    max-width:1132px;
+  }
+  #unidad .eyebrow{color:var(--sun);}
+  #unidad .eyebrow::before{background:var(--pink);}
+  #unidad h2{color:#fff; font-size:2rem; margin-bottom:10px;}
+  #unidad .grade{color:rgba(255,255,255,0.65); font-weight:700; margin-bottom:36px;}
+  .unidad-layout{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .unidad-layout h3{font-size:1.1rem; color:var(--sun); margin-bottom:16px; display:flex; align-items:center; gap:8px;}
+  .unidad-layout h3 svg{width:22px; height:22px;}
+  .obj-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
+  .obj-list li{display:flex; gap:12px; align-items:flex-start; color:rgba(255,255,255,0.88); font-size:0.98rem;}
+  .obj-list li svg{width:20px; height:20px; flex-shrink:0; margin-top:2px; color:var(--pink);}
+
+  .plant-diagram{
+    background:rgba(255,255,255,0.06); border-radius:18px; padding:26px; display:flex;
+    align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.12);
+  }
+  .plant-diagram svg{width:100%; max-width:280px;}
+
+  /* ADAPTACION TEA */
+  #adaptacion{padding-top:64px;}
+  .adapt-banner{
+    display:flex; align-items:center; gap:16px; margin-bottom:36px;
+    background:#fff; border-radius:18px; padding:20px 26px; box-shadow:var(--shadow);
+    border-left:6px solid var(--pink-deep);
+  }
+  .adapt-banner svg{width:44px; height:44px; color:var(--pink-deep); flex-shrink:0;}
+  .adapt-banner p{color:var(--ink-soft); font-size:1rem;}
+  .adapt-banner strong{color:var(--ink); display:block; font-family:'Quicksand'; font-size:1.05rem; margin-bottom:2px;}
+
+  .adapt-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px;}
+  .adapt-card{
+    background:#fff; border-radius:18px; padding:24px; box-shadow:var(--shadow);
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .adapt-card .num{
+    width:38px; height:38px; border-radius:50%; background:var(--sky); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Quicksand'; font-weight:700;
+    flex-shrink:0;
+  }
+  .adapt-card:nth-child(2n) .num{background:var(--pink-deep);}
+  .adapt-card:nth-child(3n) .num{background:var(--sky-deep);}
+  .adapt-card p{color:var(--ink-soft); font-size:0.95rem;}
+  .adapt-card strong{color:var(--ink); font-family:'Quicksand'; display:block; margin-bottom:4px;}
+
+  /* ACTIVIDAD */
+  #actividad .activity-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:30px;}
+  .activity-card{
+    background:linear-gradient(160deg,#fff, rgba(244,201,93,0.12));
+    border-radius:var(--radius); padding:30px; box-shadow:var(--shadow);
+  }
+  .activity-card h3{display:flex; gap:10px; align-items:center; margin-bottom:12px; color:var(--ink);}
+  .activity-card h3 svg{width:26px; height:26px; color:var(--pink-deep);}
+  .activity-card p{color:var(--ink-soft); font-size:0.98rem;}
+
+  /* CONTACTO */
+  #contacto{
+    background:var(--sky); border-radius:40px; color:#fff; margin-bottom:60px;
+  }
+  #contacto .eyebrow{color:#fff;}
+  #contacto .eyebrow::before{background:var(--sun);}
+  #contacto h2{color:#fff; margin-bottom:30px;}
+  .contact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:22px;}
+  .contact-card{
+    background:rgba(255,255,255,0.14); border-radius:18px; padding:24px;
+    border:1px solid rgba(255,255,255,0.25);
+  }
+  .contact-card svg{width:28px; height:28px; margin-bottom:12px;}
+  .contact-card h3{font-size:1rem; margin-bottom:6px;}
+  .contact-card p, .contact-card a{color:rgba(255,255,255,0.92); text-decoration:none; font-size:0.95rem;}
+
+  footer{
+    text-align:center; padding:30px 24px; color:var(--ink-soft); font-size:0.88rem;
+  }
+
+  @media (max-width:880px){
+    #inicio{grid-template-columns:1fr;}
+    .hero-art{order:-1;}
+    .mv-grid{grid-template-columns:1fr;}
+    .unidad-layout{grid-template-columns:1fr;}
+    #unidad{padding:40px 26px;}
+    .activity-grid{grid-template-columns:1fr !important;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+<a href="#inicio" class="skip-link">Saltar al contenido principal</a>
+
+<header>
+  <nav aria-label="Navegación principal">
+    <div class="brand-group">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="31" fill="#FDFBF6" stroke="#7FB8D9" stroke-width="2"/>
+        <path d="M14 40 C14 28 22 24 30 26 L30 42 C22 40 14 44 14 40 Z" fill="#F4C95D"/>
+        <path d="M50 40 C50 28 42 24 34 26 L34 42 C42 40 50 44 50 40 Z" fill="#F4A6C1"/>
+        <rect x="29" y="24" width="6" height="3" fill="#3F86AD"/>
+        <path d="M32 44 L32 50" stroke="#7FB8D9" stroke-width="3" stroke-linecap="round"/>
+        <path d="M32 50 C28 50 26 47 26 44" stroke="#3F86AD" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M32 47 C35 47 37 45 37 42" stroke="#E8789F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="brand">Horizonte para Todos<small>COLEGIO INCLUSIVO</small></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#mision-vision">Misión y Visión</a></li>
+      <li><a href="#materias">Materias</a></li>
+      <li><a href="#unidad">Unidad de Biología</a></li>
+      <li><a href="#adaptacion">Adaptación TEA</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- INICIO -->
+  <section id="inicio" aria-label="Inicio">
+    <div class="hero-text">
+      <p class="eyebrow">Educación para cada estudiante</p>
+      <h1>Colegio Inclusivo<br>Horizonte para Todos</h1>
+      <p class="slogan">"Aprendemos juntos, crecemos sin límites"</p>
+      <p>Un lugar donde cada estudiante, sin importar su forma de aprender, encuentra el acompañamiento, las herramientas y la comunidad para crecer. Educación equitativa, accesible y de calidad para todos.</p>
+      <div class="cta-row">
+        <a href="#unidad" class="btn btn-primary">Conoce nuestras unidades</a>
+        <a href="#contacto" class="btn btn-secondary">Contáctanos</a>
+      </div>
+      <div class="access-bar">
+        <span class="access-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"/><path d="M19 8l-5 2-2-2-2 2-5-2M12 10v5l-3 7M12 15l3 7"/></svg>Accesibilidad universal</span>
+        <span class="access-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-3-8-6-8-11a5 5 0 0110-2 5 5 0 0110 2c0 5-4 8-8 11z"/></svg>Acompañamiento personalizado</span>
+        <span class="access-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-4 5-6 9-6s7 2 9 6c-2 4-5 6-9 6s-7-2-9-6z"/><circle cx="12" cy="12" r="3"/></svg>Diversidad valorada</span>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 420 380" role="img" aria-label="Ilustración de estudiantes diversos junto a un libro abierto y una planta, símbolo del colegio">
+        <ellipse cx="210" cy="345" rx="170" ry="20" fill="#7FB8D9" opacity="0.18"/>
+        <!-- book -->
+        <path d="M120 230 C150 210 180 215 210 225 L210 290 C180 280 150 275 120 295 Z" fill="#3F86AD"/>
+        <path d="M300 230 C270 210 240 215 210 225 L210 290 C240 280 270 275 300 295 Z" fill="#7FB8D9"/>
+        <path d="M210 225 L210 290" stroke="#FDFBF6" stroke-width="2"/>
+        <!-- plant -->
+        <rect x="200" y="290" width="20" height="40" rx="4" fill="#E8789F"/>
+        <path d="M210 290 C190 270 185 250 200 235 C210 255 212 270 210 290Z" fill="#6FA85C"/>
+        <path d="M210 290 C230 270 235 250 220 235 C210 255 208 270 210 290Z" fill="#86C26E"/>
+        <!-- children -->
+        <g>
+          <circle cx="90" cy="150" r="22" fill="#F4C95D"/>
+          <rect x="70" y="172" width="40" height="55" rx="14" fill="#3F86AD"/>
+        </g>
+        <g>
+          <circle cx="160" cy="120" r="24" fill="#F4A6C1"/>
+          <rect x="138" y="144" width="44" height="60" rx="15" fill="#F4C95D"/>
+          <circle cx="160" cy="108" r="6" fill="#FDFBF6"/>
+        </g>
+        <g>
+          <circle cx="250" cy="118" r="24" fill="#E8789F"/>
+          <rect x="228" y="142" width="44" height="60" rx="15" fill="#7FB8D9"/>
+        </g>
+        <g>
+          <circle cx="325" cy="150" r="22" fill="#3F86AD"/>
+          <rect x="305" y="172" width="40" height="55" rx="14" fill="#F4A6C1"/>
+          <!-- wheelchair detail -->
+          <circle cx="325" cy="240" r="18" fill="none" stroke="#2C4A5E" stroke-width="3"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- MISION / VISION -->
+  <section id="mision-vision" aria-label="Misión y Visión">
+    <p class="eyebrow">Lo que nos guía</p>
+    <h2 style="font-size:2rem; margin-bottom:36px;">Misión y Visión</h2>
+    <div class="mv-grid">
+      <div class="mv-card">
+        <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>Misión</h2>
+        <p>Brindar una educación inclusiva, equitativa y de calidad para todos los estudiantes, reconociendo y valorando sus capacidades, ritmos y formas de aprender.</p>
+      </div>
+      <div class="mv-card vision">
+        <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>Visión</h2>
+        <p>Ser una institución reconocida por promover el aprendizaje, la participación y el respeto por la diversidad, formando una comunidad educativa donde todos pertenecen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIAS -->
+  <section id="materias" aria-label="Materias">
+    <p class="eyebrow">Plan de estudios</p>
+    <h2 style="font-size:2rem;">Nuestras materias</h2>
+    <div class="subjects-grid">
+      <div class="subject-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2C12 2 5 6 5 13a7 7 0 0014 0c0-7-7-11-7-11z"/></svg></div>
+        <h3>Biología</h3>
+      </div>
+      <div class="subject-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg></div>
+        <h3>Matemáticas</h3>
+      </div>
+      <div class="subject-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <h3>Lengua Castellana</h3>
+      </div>
+      <div class="subject-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18 14 14 0 010-18z"/></svg></div>
+        <h3>Ciencias Sociales</h3>
+      </div>
+      <div class="subject-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Tecnología</h3>
+      </div>
+      <div class="subject-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="#fff"/><path d="M12 2a10 10 0 100 20 1.5 1.5 0 001.06-2.56 1.5 1.5 0 011.06-2.56H17a3 3 0 003-3c0-6.08-3.5-11.88-8-11.88z"/></svg></div>
+        <h3>Educación Artística</h3>
+      </div>
+      <div class="subject-card">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M12 7v5l-4 9M12 12l4 9M8 12H4M16 12h4"/></svg></div>
+        <h3>Educación Física</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIDAD DE BIOLOGIA -->
+  <section id="unidad" aria-label="Unidad de Biología">
+    <p class="eyebrow">Biología · Grado 6°</p>
+    <h2>Unidad 1: Las partes de la planta y sus funciones</h2>
+    <p class="grade">Una unidad pensada para que todos los estudiantes aprendan a su manera</p>
+    <div class="unidad-layout">
+      <div>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Objetivos de aprendizaje</h3>
+        <ul class="obj-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Identificar la raíz, el tallo, las hojas, la flor y el fruto.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Comprender la función de cada parte de la planta.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Reconocer la importancia de las plantas para los seres vivos.</li>
+        </ul>
+      </div>
+      <div class="plant-diagram">
+        <svg viewBox="0 0 200 260" role="img" aria-label="Diagrama de una planta señalando flor, hojas, tallo y raíz">
+          <ellipse cx="100" cy="225" rx="60" ry="14" fill="#3F86AD" opacity="0.5"/>
+          <path d="M100 215 C70 200 65 150 80 120 C90 150 95 185 100 215 Z" fill="#86C26E"/>
+          <path d="M100 215 C130 200 135 150 120 120 C110 150 105 185 100 215 Z" fill="#6FA85C"/>
+          <path d="M100 220 L100 80" stroke="#6FA85C" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="100" cy="60" r="26" fill="#F4A6C1"/>
+          <circle cx="78" cy="48" r="18" fill="#F4C95D"/>
+          <circle cx="122" cy="48" r="18" fill="#F4C95D"/>
+          <circle cx="100" cy="35" r="18" fill="#E8789F"/>
+          <circle cx="100" cy="60" r="9" fill="#fff"/>
+          <path d="M80 220 C60 235 50 245 35 248 M100 222 C100 238 95 248 95 252 M120 220 C140 235 150 245 165 248" stroke="#D9A441" stroke-width="4" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADAPTACION TEA -->
+  <section id="adaptacion" aria-label="Adaptación inclusiva para TEA">
+    <p class="eyebrow">Educación adaptada</p>
+    <h2 style="font-size:2rem; margin-bottom:24px;">Adaptación inclusiva para un estudiante con Trastorno del Espectro Autista (TEA)</h2>
+    <div class="adapt-banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M8 12l3 3 5-6"/></svg>
+      <p><strong>Aprendizaje a la medida de cada estudiante</strong>Adaptamos la unidad de Biología con estrategias visuales, sensoriales y de tiempo flexible, garantizando que cada estudiante participe plenamente.</p>
+    </div>
+    <div class="adapt-grid">
+      <div class="adapt-card">
+        <div class="num">1</div>
+        <p><strong>Pictogramas e imágenes reales</strong>Apoyo visual para representar la raíz, el tallo, las hojas, la flor y el fruto.</p>
+      </div>
+      <div class="adapt-card">
+        <div class="num">2</div>
+        <p><strong>Instrucciones cortas y claras</strong>Lenguaje simple, directo y paso a paso, sin ambigüedades.</p>
+      </div>
+      <div class="adapt-card">
+        <div class="num">3</div>
+        <p><strong>Actividades visuales</strong>Ejercicios de relación entre imágenes y partes de la planta.</p>
+      </div>
+      <div class="adapt-card">
+        <div class="num">4</div>
+        <p><strong>Material manipulativo</strong>Maquetas y plantas reales para explorar con el tacto.</p>
+      </div>
+      <div class="adapt-card">
+        <div class="num">5</div>
+        <p><strong>Tiempo adicional</strong>Espacio flexible para completar cada actividad sin presión.</p>
+      </div>
+      <div class="adapt-card">
+        <div class="num">6</div>
+        <p><strong>Evaluación flexible</strong>A través de imágenes, dibujos y participación práctica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVIDAD PRACTICA -->
+  <section id="actividad" aria-label="Actividad práctica">
+    <p class="eyebrow">Manos a la obra</p>
+    <h2 style="font-size:2rem;">Actividad práctica</h2>
+    <div class="activity-grid">
+      <div class="activity-card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C12 2 5 6 5 13a7 7 0 0014 0c0-7-7-11-7-11z"/></svg>Observación con etiquetas</h3>
+        <p>Cada estudiante observa una planta real y, con etiquetas de colores, identifica y nombra la raíz, el tallo, las hojas, la flor y el fruto.</p>
+      </div>
+      <div class="activity-card">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>Rompecabezas de la planta</h3>
+        <p>Los estudiantes arman un rompecabezas con las partes de una planta, reforzando el reconocimiento visual y la secuencia de aprendizaje.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" aria-label="Contacto">
+    <p class="eyebrow">Hablemos</p>
+    <h2 style="font-size:2rem;">Contacto</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-7 7-12a7 7 0 10-14 0c0 5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <h3>Dirección</h3>
+        <p>Carrera 12 # 45-30, Barrio Las Acacias, Zipaquirá, Cundinamarca</p>
+      </div>
+      <div class="contact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.34 1.78.65 2.62a2 2 0 01-.45 2.11L8.09 9.67a16 16 0 006 6l1.22-1.22a2 2 0 012.11-.45c.84.31 1.72.53 2.62.65A2 2 0 0122 16.92z"/></svg>
+        <h3>Teléfono</h3>
+        <p>(601) 555 0192</p>
+      </div>
+      <div class="contact-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7L22 6"/></svg>
+        <h3>Correo institucional</h3>
+        <a href="mailto:contacto@horizonteparatodos.edu.co">contacto@horizonteparatodos.edu.co</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Colegio Inclusivo Horizonte para Todos · Educación para cada estudiante, sin excepciones.
+</footer>
+
+</body>
+</html>
